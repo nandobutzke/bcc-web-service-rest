@@ -1,17 +1,19 @@
 import { Router } from 'express';
+import { uuid } from 'uuidv4';
+import Product from '../models/Product';
 
 const productsRouter = Router();
 
-productsRouter.post('/', (req, res) => {
-    const products = [
-        { id: 1, name: 'tênis' },
-        { id: 2, name: 'camisa' },
-        { id: 3, name: 'boné' },
-    ];
+const products: Product[] = [];
 
-    console.log(req.body)
+productsRouter.post('/', (request, response) => {
+    const { name, description } = request.body;
 
-    return res.json(products);
+    const product = new Product(name, description);
+
+    products.push(product);
+
+    return response.json(product);
 });
 
 export default productsRouter;
