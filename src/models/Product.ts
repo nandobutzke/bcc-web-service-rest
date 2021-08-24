@@ -1,17 +1,15 @@
 import { uuid } from 'uuidv4'
 
-class Product {
+export default class Product {
     id: string;
 
     name: string;
 
     description: string;
 
-    constructor(name: string, description: string) {
+    constructor({ name, description }: Omit<Product, 'id'>) {
         this.id = uuid();
         this.name = name;
         this.description = description;
     }
 }
-
-export default Product;
