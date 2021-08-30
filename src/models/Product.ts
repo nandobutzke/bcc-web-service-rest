@@ -5,11 +5,14 @@ export default class Product {
 
     name: string;
 
+    price: number;
+
     description: string;
 
-    constructor({ name, description }: Omit<Product, 'id'>) {
+    constructor({ name, price, description }: Omit<Product, 'id'>) {
         this.id = uuid();
         this.name = name;
+        this.price = price;
         this.description = description;
     }
 }

@@ -2,10 +2,11 @@ import Product from '../models/Product';
 
 interface CreateProductDTO {
     name: string;
+    price: number;
     description: string;
 }
 
-export default class ProductsRepository {
+export default class ProductsController {
     private products: Product[];
 
     constructor() {
@@ -16,9 +17,10 @@ export default class ProductsRepository {
         return this.products;
     }
 
-    public create({ name, description }: CreateProductDTO): Product {
+    public create({ name, price, description }: CreateProductDTO): Product {
         const product = new Product({
             name,
+            price,
             description
         });
 
