@@ -21,7 +21,8 @@ export default class ProductsController {
         const product = new Product({
             name,
             price,
-            description
+            description,
+            aloha
         });
 
         this.products.push(product);
