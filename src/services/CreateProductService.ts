@@ -21,7 +21,7 @@ export default class CreateProductService {
             description
         });
 
-        if(!name) {
+        if (!name) { 
             throw Error('The product name is null!');
         }
         

@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import { uuid } from 'uuidv4';
-import Product from '../models/Product';
 import ProductsController from '../controllers/ProductsController';
 import CreateProductService from '../services/CreateProductService';
 
