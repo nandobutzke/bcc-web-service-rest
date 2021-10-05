@@ -15,10 +15,6 @@ export default class CreateOrderDetails1633388780429 implements MigrationInterfa
                         default: 'uuid_generate_v4()'
                     },
                     {
-                        name: 'product_id',
-                        type: 'uuid',
-                    },
-                    {
                         name: 'order_id',
                         type: 'uuid',
                     },
@@ -46,19 +42,9 @@ export default class CreateOrderDetails1633388780429 implements MigrationInterfa
 
         await queryRunner.createForeignKey('order_details', new TableForeignKey({
             name: 'OrderID',
-            columnNames: ['id'],
+            columnNames: ['order_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'orders',
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE'
-        })
-        );
-
-        await queryRunner.createForeignKey('order_details', new TableForeignKey({
-            name: 'ProductID',
-            columnNames: ['id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'products',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         })
@@ -66,8 +52,7 @@ export default class CreateOrderDetails1633388780429 implements MigrationInterfa
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('orders', 'OrderID');
-        await queryRunner.dropForeignKey('products', 'ProductID');
+        await queryRunner.dropForeignKey('order_details', 'OrderID');
 
         await queryRunner.dropTable('order_details');
     }

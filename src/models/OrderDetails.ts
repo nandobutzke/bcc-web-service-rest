@@ -7,6 +7,8 @@ import {
     JoinColumn,
     ManyToMany,
     OneToOne,
+    OneToMany,
+    ManyToOne,
 } from 'typeorm';
 
 import Product from './Product';
@@ -16,13 +18,6 @@ import Order from './Order';
 export default class OrderDetails {
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-    @Column()
-    product_id: string;
-
-    @ManyToMany(() => Product)
-    @JoinColumn({ name: 'product_id' })
-    product: Product;
 
     @Column()
     order_id: string;

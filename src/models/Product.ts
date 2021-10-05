@@ -1,9 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import OrderDetails from './OrderDetails';
 
 @Entity('products')
 export default class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
+
+    @Column()
+    order_details_id: string;
+
+    @ManyToOne(() => OrderDetails)
+    @JoinColumn({ name: 'order_details_id' })
+    order_details: OrderDetails;
 
     @Column()
     name: string;
