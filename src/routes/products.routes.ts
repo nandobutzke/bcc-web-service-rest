@@ -3,10 +3,11 @@ import ProductsController from '../controllers/ProductsController';
 import CreateProductService from '../services/CreateProductService';
 
 import { getCustomRepository } from 'typeorm';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const productsRouter = Router();
-const productsController = new ProductsController();
 
+//productsRouter.use(ensureAuthenticated);
 
 productsRouter.get('/', async (request, response) => {
     const productsController = getCustomRepository(ProductsController);
@@ -33,6 +34,18 @@ productsRouter.post('/', async (request, response) => {
     } catch (err) {
         return response.status(400).json({ error: err });
     }
+});
+
+productsRouter.get('/:id', async (request, response) => {
+    const { id } = request.params;
+
+    const productsController = getCustomRepository(ProductsController);
+
+    const product = await productsController.findOne({
+        where: { id }
+    });
+
+    return response.json(product);
 });
 
 export default productsRouter;

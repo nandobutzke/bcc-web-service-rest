@@ -14,7 +14,7 @@ import {
 import Product from './Product';
 import Order from './Order';
 
-@Entity('orders')
+@Entity('order_details')
 export default class OrderDetails {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -25,6 +25,13 @@ export default class OrderDetails {
     @OneToOne(() => Order)
     @JoinColumn({ name: 'order_id' })
     order: Order;
+
+    @Column()
+    product_id: string;
+
+    @ManyToOne(() => Product)
+    @JoinColumn({ name: 'product_id' })
+    product: Product;
 
     @Column()
     amount: number;

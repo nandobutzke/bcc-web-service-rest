@@ -19,6 +19,10 @@ export default class CreateOrderDetails1633388780429 implements MigrationInterfa
                         type: 'uuid',
                     },
                     {
+                        name: 'product_id',
+                        type: 'uuid',
+                    },
+                    {
                         name: 'amount',
                         type: 'int',
                     },
@@ -49,10 +53,21 @@ export default class CreateOrderDetails1633388780429 implements MigrationInterfa
             onUpdate: 'CASCADE'
         })
         );
+
+        await queryRunner.createForeignKey('order_details', new TableForeignKey({
+            name: 'ProductID',
+            columnNames: ['product_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'products',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+        })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropForeignKey('order_details', 'OrderID');
+        await queryRunner.dropForeignKey('order_details', 'ProductID');
 
         await queryRunner.dropTable('order_details');
     }

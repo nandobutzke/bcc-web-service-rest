@@ -7,13 +7,6 @@ export default class Product {
     id: string;
 
     @Column()
-    order_details_id: string;
-
-    @ManyToOne(() => OrderDetails)
-    @JoinColumn({ name: 'order_details_id' })
-    order_details: OrderDetails;
-
-    @Column()
     name: string;
 
     @Column()
