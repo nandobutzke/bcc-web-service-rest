@@ -2,30 +2,28 @@ import { getRepository } from "typeorm";
 import Product from "../models/Product";
 
 interface RequestDTO {
+  id: string;
   name: string;
   description: string;
   stock: number;
   price: number;
 }
 
-export default class CreateProductService {
+export default class UpdateProductService {
   public async execute({
+    id,
     name,
     description,
     stock,
     price,
-  }: RequestDTO): Promise<Product> {
+  }: RequestDTO): Promise<void> {
     const productsController = getRepository(Product);
 
-    const product = productsController.create({
+    await productsController.update({ id }, {
       name,
       description,
       stock,
       price,
     });
-
-    await productsController.save(product);
-
-    return product;
   }
 }
