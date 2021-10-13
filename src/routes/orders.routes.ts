@@ -4,6 +4,7 @@ import { getRepository } from "typeorm";
 import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 import Order from "../models/Order";
 import CreateOrderService from "../services/CreateOrderService";
+import DeleteOrderService from "../services/DeleteOrderService";
 
 const ordersRouter = Router();
 
@@ -43,6 +44,22 @@ ordersRouter.get("/:id", async (request, response) => {
   });
 
   return response.json(order);
+});
+
+ordersRouter.delete("/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+
+    const orderDelete = new DeleteOrderService;
+
+    await orderDelete.execute({
+      id
+    });
+
+    return response.json(`the product with ${id} has been deleted.`);
+  } catch (err) {
+    return response.status(400).json({ error: err });
+  }
 });
 
 export default ordersRouter;

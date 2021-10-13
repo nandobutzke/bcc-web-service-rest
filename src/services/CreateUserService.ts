@@ -11,9 +11,9 @@ interface Request {
 
 export default class CreateUserService {
   public async execute({ name, email, password }: Request): Promise<User> {
-    const usersRepository = getRepository(User);
+    const usersController = getRepository(User);
 
-    const checkUserExists = await usersRepository.findOne({
+    const checkUserExists = await usersController.findOne({
       where: { email },
     });
 
@@ -23,13 +23,13 @@ export default class CreateUserService {
 
     const hashedPassword = await hash(password, 8);
 
-    const user = usersRepository.create({
+    const user = usersController.create({
       name,
       email,
       password: hashedPassword,
     });
 
-    await usersRepository.save(user);
+    await usersController.save(user);
 
     return user;
   }
