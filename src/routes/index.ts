@@ -14,5 +14,4 @@ routes.use('/order-details', orderDetailsRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 
-
 export default routes;

@@ -13,19 +13,24 @@ export default function ensureAuthenticated(
     response: Response,
     next: NextFunction,
 ): void {
+    // Validando o JWT
+
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
         throw new Error('JWT token is missing');
     }
 
+    //type
     const [, token] = authHeader.split(' ');
 
     try {
         const decoded = verify(token, authConfig.jwt.secret);
 
+        // Forçando a tipagem da variável
         const { sub } = decoded as TokenPayload;
 
+        // Listagem de pedidos do usuário logado
         request.user = {
             id: sub,
         };
