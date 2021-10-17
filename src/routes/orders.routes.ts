@@ -30,7 +30,7 @@ ordersRouter.post("/", async (request, response) => {
 
     return response.json(order);
   } catch (err) {
-    return response.status(400).json({ error: err });
+    return response.status(400).json({ error: err.message });
   }
 });
 
@@ -58,7 +58,7 @@ ordersRouter.delete("/:id", async (request, response) => {
 
     return response.json(`the product with ${id} has been deleted.`);
   } catch (err) {
-    return response.status(400).json({ error: err });
+    return response.status(400).json({ error: err.message });
   }
 });
 

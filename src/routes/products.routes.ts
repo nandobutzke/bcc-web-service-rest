@@ -12,16 +12,16 @@ const productsRouter = Router();
 productsRouter.use(ensureAuthenticated);
 
 productsRouter.get("/", async (request, response) => {
-  const productsController = getRepository(Product);
+  const productsRepository = getRepository(Product);
 
-  const products = await productsController.find();
+  const products = await productsRepository.find();
 
   return response.json(products);
 });
 
 productsRouter.post("/", async (request, response) => {
   try {
-    const { name, description, price, stock } = request.body;
+    const { name, description, stock, price } = request.body;
 
     const createProduct = new CreateProductService();
 
@@ -34,7 +34,7 @@ productsRouter.post("/", async (request, response) => {
 
     return response.json(product);
   } catch (err) {
-    return response.status(400).json({ error: err });
+    return response.status(400).json({ error: err.message });
   }
 });
 
@@ -43,9 +43,9 @@ productsRouter.post("/", async (request, response) => {
 productsRouter.get("/:id", async (request, response) => {
   const { id } = request.params;
 
-  const productsController = getRepository(Product);
+  const productsRepository = getRepository(Product);
 
-  const product = await productsController.findOne({
+  const product = await productsRepository.findOne({
     where: { id },
   });
 
@@ -69,7 +69,7 @@ productsRouter.put("/:id", async (request, response) => {
 
     return response.json(`the product with ${id} has been altered.`);
   } catch (err) {
-    return response.status(400).json({ error: err });
+    return response.status(400).json({ error: err.message });
   }
 });
 
@@ -85,7 +85,7 @@ productsRouter.delete("/:id", async (request, response) => {
 
     return response.json(`the product with ${id} has been deleted.`);
   } catch (err) {
-    return response.status(400).json({ error: err });
+    return response.status(400).json({ error: err.message });
   }
 });
 
