@@ -22,6 +22,7 @@ export default function ensureAuthenticated(
     }
 
     //type
+    //Bearer hfgubdu7878dgdfg787dfg88d
     const [, token] = authHeader.split(' ');
 
     try {

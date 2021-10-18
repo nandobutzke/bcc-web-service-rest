@@ -12,9 +12,9 @@ const orderDetailsRouter = Router();
 orderDetailsRouter.use(ensureAuthenticated);
 
 orderDetailsRouter.get("/", async (request, response) => {
-  const orderDetailsController = getRepository(OrderDetails);
+  const orderDetailsRepository = getRepository(OrderDetails);
 
-  const orderDetails = await orderDetailsController.find();
+  const orderDetails = await orderDetailsRepository.find();
 
   return response.json(orderDetails);
 });
@@ -41,9 +41,9 @@ orderDetailsRouter.post("/", async (request, response) => {
 orderDetailsRouter.get("/:id", async (request, response) => {
   const { id } = request.params;
 
-  const orderDetailsController = getRepository(OrderDetails);
+  const orderDetailsRepository = getRepository(OrderDetails);
 
-  const orderDetails = await orderDetailsController.findOne({
+  const orderDetails = await orderDetailsRepository.findOne({
     where: { id },
   });
 

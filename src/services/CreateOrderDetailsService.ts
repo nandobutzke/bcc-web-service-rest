@@ -15,16 +15,16 @@ export default class CreateOrderDetailsService {
     amount,
     total,
   }: RequestDTO): Promise<OrderDetails> {
-    const ordersDetailsController = getRepository(OrderDetails);
+    const ordersDetailsRepository = getRepository(OrderDetails);
 
-    const orderDetails = ordersDetailsController.create({
+    const orderDetails = ordersDetailsRepository.create({
       order_id,
       product_id,
       amount,
       total,
     });
 
-    await ordersDetailsController.save(orderDetails);
+    await ordersDetailsRepository.save(orderDetails);
 
     return orderDetails;
   }

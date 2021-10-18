@@ -9,8 +9,8 @@ export default class DeleteProductService {
   public async execute({
     id
   }: RequestDTO): Promise<void> {
-    const productsController = getRepository(Product);
+    const productsRepository = getRepository(Product);
 
-    await productsController.delete({ id });
+    await productsRepository.delete({ id });
   }
 }

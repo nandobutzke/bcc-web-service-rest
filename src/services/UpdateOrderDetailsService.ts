@@ -15,9 +15,9 @@ export default class UpdateOrderDetailsService {
     amount,
     total
   }: RequestDTO): Promise<void> {
-    const orderDetailsController = getRepository(OrderDetails);
+    const orderDetailsRepository = getRepository(OrderDetails);
 
-    await orderDetailsController.update({ id }, {
+    await orderDetailsRepository.update({ id }, {
       product_id,
       amount,
       total

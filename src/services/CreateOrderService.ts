@@ -7,11 +7,11 @@ interface RequestDTO {
 
 export default class CreateOrderService {
   public async execute({ user_id }: RequestDTO): Promise<Order> {
-    const ordersController = getRepository(Order);
+    const ordersRepository = getRepository(Order);
 
-    const order = ordersController.create({ user_id });
+    const order = ordersRepository.create({ user_id });
 
-    await ordersController.save(order);
+    await ordersRepository.save(order);
 
     return order;
   }

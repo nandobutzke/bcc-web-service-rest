@@ -17,9 +17,9 @@ export default class UpdateProductService {
     stock,
     price,
   }: RequestDTO): Promise<void> {
-    const productsController = getRepository(Product);
+    const productsRepository = getRepository(Product);
 
-    await productsController.update({ id }, {
+    await productsRepository.update({ id }, {
       name,
       description,
       stock,

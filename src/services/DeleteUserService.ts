@@ -9,8 +9,8 @@ export default class DeleteUserService {
   public async execute({
     id
   }: RequestDTO): Promise<void> {
-    const usersController = getRepository(User);
+    const usersRepository = getRepository(User);
 
-    await usersController.delete({ id });
+    await usersRepository.delete({ id });
   }
 }

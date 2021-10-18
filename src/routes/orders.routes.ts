@@ -11,9 +11,9 @@ const ordersRouter = Router();
 ordersRouter.use(ensureAuthenticated);
 
 ordersRouter.get("/", async (request, response) => {
-  const ordersController = getRepository(Order);
+  const ordersRepository = getRepository(Order);
 
-  const orders = await ordersController.find();
+  const orders = await ordersRepository.find();
 
   return response.json(orders);
 });
@@ -37,9 +37,9 @@ ordersRouter.post("/", async (request, response) => {
 ordersRouter.get("/:id", async (request, response) => {
   const { id } = request.params;
 
-  const ordersController = getRepository(Order);
+  const ordersRepository = getRepository(Order);
 
-  const order = await ordersController.findOne({
+  const order = await ordersRepository.findOne({
     where: { id },
   });
 

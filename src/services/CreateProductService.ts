@@ -15,16 +15,16 @@ export default class CreateProductService {
     stock,
     price,
   }: RequestDTO): Promise<Product> {
-    const productsController = getRepository(Product);
+    const productsRepository = getRepository(Product);
 
-    const product = productsController.create({
+    const product = productsRepository.create({
       name,
       description,
       stock,
       price,
     });
 
-    await productsController.save(product);
+    await productsRepository.save(product);
 
     return product;
   }
