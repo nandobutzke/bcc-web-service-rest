@@ -31,7 +31,7 @@ usersRouter.put("/:id", async (request, response) => {
     const { id } = request.params;
     const { name, email, password } = request.body;
 
-    const usersUpdate = new UpdateUserService;
+    const usersUpdate = new UpdateUserService();
 
     await usersUpdate.execute({
       id,
@@ -50,7 +50,7 @@ usersRouter.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
-    const usersUpdate = new DeleteUserService;
+    const usersUpdate = new DeleteUserService();
 
     await usersUpdate.execute({
       id
